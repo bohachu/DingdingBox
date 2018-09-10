@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <QCARInfo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="QCAR_Dataset_config.xsd">
   <TargetSet version="5.0" toolVersion="4.2.0">
-    <ObjectTarget bbox="0.0 0.0 0.0 0.1 0.1 0.1" captureAppVersion="6.5.0" lastSaved="2018-06-26 16:33:12" name="box" targetId="fa7badebf9cd49fdb63f00ed5ef40a75" version="2.0" />
+    <ObjectTarget bbox="0.0 0.0 0.0 0.1 0.1 0.1" captureAppVersion="6.5.0" lastSaved="2018-08-30 19:16:29" name="008" targetId="f3682e58dd8e47b5ba95cc64f6f5e2ea" version="2.0" />
+    <ObjectTarget bbox="0.0 0.0 0.0 0.1 0.1 0.1" captureAppVersion="6.5.0" lastSaved="2018-08-30 19:10:28" name="007" targetId="d78bcc8b83a94d2a89ed0baf17be9471" version="2.0" />
+    <ObjectTarget bbox="0.0 0.0 0.0 0.1 0.1 0.1" captureAppVersion="6.5.0" lastSaved="2018-08-30 19:05:08" name="006" targetId="a76f3d19d4db4727ac776998d0d7ec06" version="2.0" />
+    <ObjectTarget bbox="0.0 0.0 0.0 0.1 0.1 0.1" captureAppVersion="6.5.0" lastSaved="2018-08-30 19:00:06" name="005" targetId="e1ee6d5e8e024d10881e5d701d0b8e59" version="2.0" />
+    <ObjectTarget bbox="0.0 0.0 0.0 0.1 0.1 0.1" captureAppVersion="6.5.0" lastSaved="2018-08-30 18:52:40" name="004" targetId="b558e09d7e06442b82d84f26d954d46e" version="2.0" />
+    <ObjectTarget bbox="0.0 0.0 0.0 0.1 0.1 0.1" captureAppVersion="6.5.0" lastSaved="2018-08-30 18:47:32" name="003" targetId="02d52440ace44dccae7298bc2c19fedd" version="2.0" />
+    <ObjectTarget bbox="0.0 0.0 0.0 0.1 0.1 0.1" captureAppVersion="6.5.0" lastSaved="2018-08-30 18:37:53" name="002" targetId="b332a858c3ff4ff0953fdfacd34100bd" version="2.0" />
+    <ObjectTarget bbox="0.0 0.0 0.0 0.1 0.1 0.1" captureAppVersion="6.5.0" lastSaved="2018-08-30 18:22:17" name="001" targetId="1875b563d0384ba3808f51ca536354b2" version="2.0" />
   </TargetSet>
 </QCARInfo>

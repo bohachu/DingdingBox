@@ -44,6 +44,7 @@ namespace Cameo.PandoBox
 
         public void Stop()
         {
+            unityVideoPlayer.loopPointReached -= UnityVideoPlayer_LoopPointReached;
             unityVideoPlayer.Stop();
         }
 
@@ -85,6 +86,7 @@ namespace Cameo.PandoBox
 
         private IEnumerator playCoroutine()
         {
+            unityVideoPlayer.loopPointReached += UnityVideoPlayer_LoopPointReached;
             WaitForSeconds waitTime = new WaitForSeconds(0.1f);
             while (!unityVideoPlayer.isPrepared)
             {

@@ -14,7 +14,7 @@ namespace Cameo.PandoBox
         private Button nextFloorBtn;
 
         [SerializeField]
-        private Image floorImage;
+        private RawImage floorImage;
 
         [SerializeField]
         private Image warningLabel;
@@ -28,7 +28,8 @@ namespace Cameo.PandoBox
         public void Init(List<PandoBoxInfo> pandoBoxInfos)
         {
             this.pandoBoxInfos = pandoBoxInfos;
-            floorText.text = string.Format("{0}F", pandoBoxInfos[0].weights);
+            floorText.text = (pandoBoxInfos[0].weights > 0) ? string.Format("{0}F", pandoBoxInfos[0].weights) : string.Format("B{0}F", Mathf.Abs(pandoBoxInfos[0].weights));
+
             shopIndex = 0;
             updateUI();
         }
@@ -54,9 +55,25 @@ namespace Cameo.PandoBox
 
         void updateUI()
         {
+            StartCoroutine("loadImage");
+          
+
             warningLabel.gameObject.SetActive(false);
             prevFloorBtn.gameObject.SetActive(shopIndex > 0);
             nextFloorBtn.gameObject.SetActive(shopIndex < pandoBoxInfos.Count - 1);
+        }
+
+        private IEnumerator loadImage()
+        {
+            WWW www = new WWW(pandoBoxInfos[shopIndex].photoUrl);
+            yield return www;
+
+            if(string.IsNullOrEmpty(www.error))
+            {
+                floorImage.texture = www.texture;
+
+            }
+
         }
     }
 

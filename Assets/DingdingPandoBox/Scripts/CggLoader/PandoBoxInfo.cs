@@ -36,7 +36,13 @@ public class PandoBoxInfo
         picTypeId = jsonData.Keys.Contains("picTypeId") && jsonData["picTypeId"] != null ? jsonData["picTypeId"].ToString() : null;
         slamId = jsonData.Keys.Contains("slamId") && jsonData["slamId"] != null ? jsonData["slamId"].ToString() : null;
         title = jsonData.Keys.Contains("title") && jsonData["title"] != null ? jsonData["title"].ToString() : null;
-        weights = jsonData.Keys.Contains("weights") && jsonData["weights"] != null? int.Parse(jsonData["weights"].ToString()) : -1;
         action = jsonData.Keys.Contains("action") && jsonData["action"] != null? null : JsonMapper.ToObject<List<PandoBoxActionInfo>>(jsonData["action"].ToJson());
+
+        string weighsStr = jsonData.Keys.Contains("weights") && jsonData["weights"] != null ? jsonData["weights"].ToString() : "0";
+        weighsStr = weighsStr.Replace('B', '-');
+        weights = int.Parse(weighsStr);
+
+
+
     }
 }

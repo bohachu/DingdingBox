@@ -28,7 +28,6 @@ namespace Cameo.PandoBox
         public void Init(PandoBoxInfo pandoBoxInfo)
         {
             this.pandoBoxInfo = pandoBoxInfo;
-            videoController.VideoFinishedCallback += onVideoPlayedCompleted;
         }
 
         public void Show()
@@ -38,6 +37,7 @@ namespace Cameo.PandoBox
 
             if(!isTriggered)
             {
+                videoController.VideoFinishedCallback += onVideoPlayedCompleted;
                 videoController.Play(pandoBoxInfo.urlLink);
             }
         }

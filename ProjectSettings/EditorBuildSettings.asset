@@ -11,8 +11,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/DingdingPandoBox/Scenes/FloorList.unity
     guid: 94ebc0d21955d48b699b6e4b28a23f13
-  - enabled: 1
-    path: Assets/DingdingPandoBox/Scenes/BadgeLIst.unity
+  - enabled: 0
+    path: Assets/DingdingPandoBox/Scenes/BadgeList.unity
     guid: 91226b397ccf94808a0aadc718171571
   - enabled: 1
     path: Assets/DingdingPandoBox/Scenes/PandoBoxScanner.unity

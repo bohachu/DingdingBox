@@ -9,6 +9,9 @@ namespace Cameo.PandoBox
         [SerializeField]
         private QRCodeDecodeController qrController;
 
+        [SerializeField]
+        private string correctUrl = "https://mractivitiesuat.sogo.com.tw/cart/myorder";
+
         public override IEnumerator InitializeCoroutine()
         {
             qrController.onQRScanFinished += qrScanFinished;
@@ -23,7 +26,7 @@ namespace Cameo.PandoBox
 
         public void OnBackButtonClicked()
         {
-            SceneNavigator.Instance.LoadScene("BadgeList");
+            SceneNavigator.Instance.LoadScene("FloorList");
         }
 
         public void OnResetButton()
@@ -41,6 +44,12 @@ namespace Cameo.PandoBox
                     dataText = "http://" + dataText;
                 }
                 Debug.Log(dataText);
+
+                if(dataText == correctUrl)
+                {
+                    RecordCenter.Instance.SetExchangedCompleted();   
+                    MessageBoxManager.Instance.ShowMessageBox("exchanging");
+                }
             }
         }
     }

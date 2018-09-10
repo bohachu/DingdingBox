@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <QCARConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="QCAR_Dataset_config.xsd">
   <Tracking>
-    <ObjectTarget name="box" />
+    <ObjectTarget name="008" />
+    <ObjectTarget name="007" />
+    <ObjectTarget name="006" />
+    <ObjectTarget name="005" />
+    <ObjectTarget name="004" />
+    <ObjectTarget name="003" />
+    <ObjectTarget name="002" />
+    <ObjectTarget name="001" />
   </Tracking>
 </QCARConfig>

@@ -10,7 +10,8 @@ namespace Cameo
 		public Image Background;
 		public MessageBoxInfo[] MessageBoxInfoList;
 		public float FadeTime = 0.2f;
-		public Color BackgroundColor = Color.black;
+
+        public CanvasGroup canvasGroup;
 
         private RectTransform rectTran;
         private List<BaseMessageBox> curOpendMessageBoxs = new List<BaseMessageBox> ();
@@ -21,8 +22,7 @@ namespace Cameo
 		void Awake()
 		{
 			rectTran = GetComponent<RectTransform> ();
-			Background.raycastTarget = false;
-			Background.color = new Color (0, 0, 0, 0);
+            Background.enabled = false;
 			msgBoxInfoMap = new Dictionary<string, BaseMessageBox> ();
 			for (int i = 0; i < MessageBoxInfoList.Length; ++i) 
 			{
@@ -32,7 +32,7 @@ namespace Cameo
 
 		public BaseMessageBox ShowMessageBox(string TypeName, Dictionary<string, object> dicParams = null)
 		{
-			Background.raycastTarget = true;
+            Background.enabled = true;
 			this.dicParams = dicParams;
 
 			GameObject msgBox = Instantiate (msgBoxInfoMap [TypeName].gameObject);
@@ -43,9 +43,8 @@ namespace Cameo
 			if (curOpendMessageBoxs.Count == 0) 
 			{
 				CancelInvoke ();
-                Background.color = new Color(BackgroundColor.r, BackgroundColor.g, BackgroundColor.b, 0);
-                LeanTween.color(Background.rectTransform, BackgroundColor, FadeTime);
-				Invoke ("onFadeInFinished", FadeTime);
+
+                LeanTween.alphaCanvas(canvasGroup, 1, FadeTime).setOnComplete(onFadeInFinished);
 			} 
 			else 
 			{
@@ -63,7 +62,6 @@ namespace Cameo
 
         private void onFadeInFinished()
         {
-            Background.raycastTarget = false;
             baseMessageBox.gameObject.SetActive(true);
             baseMessageBox.Open(onMessageBoxClosed, dicParams);
         }
@@ -75,8 +73,7 @@ namespace Cameo
 
 			if (curOpendMessageBoxs.Count == 0) 
 			{
-                LeanTween.color(Background.rectTransform, new Color(BackgroundColor.r, BackgroundColor.g, BackgroundColor.b, 0), FadeTime);
-				Invoke ("onFadeOutFinished", FadeTime);
+                LeanTween.alphaCanvas(canvasGroup, 0, FadeTime).setOnComplete(onFadeOutFinished);
 			}
 		}
 	}

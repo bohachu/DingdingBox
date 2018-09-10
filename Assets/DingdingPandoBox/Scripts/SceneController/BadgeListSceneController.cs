@@ -9,11 +9,38 @@ namespace Cameo.PandoBox
         [SerializeField]
         FadePageAnimator fadePageAnimator;
 
+        [SerializeField]
+        private RectTransform contentRectTrans;
+
+        [SerializeField]
+        private GameObject badgeControllerPrefab;
+
+        [SerializeField]
+        private RectTransform exchangeButtonRectTrans;
+
+        [SerializeField]
+        private float moveTime = 0.25f;
+
+        private List<BadgeButtonController> badgeButtonControllers;
+        private List<PandoBoxInfo> selectedInfo = new List<PandoBoxInfo>();
+
+
         public override IEnumerator InitializeCoroutine()
         {
-            //TODO: load data from api
+            badgeButtonControllers = new List<BadgeButtonController>();
 
-            //TODO: construct ui
+            for (int i = 0; i < DataCenter.Instance.InfoList.Count; ++i)
+            {
+                GameObject newObj = Instantiate(badgeControllerPrefab);
+
+                BadgeButtonController badgeButtonController = newObj.GetComponent<BadgeButtonController>();
+                badgeButtonController.Init(DataCenter.Instance.InfoList[i],onButtonClicked);
+                badgeButtonControllers.Add(badgeButtonController);
+
+                newObj.transform.SetParent(contentRectTrans, false);
+            }
+
+            setExchangeButton();
 
             yield return StartCoroutine(fadePageAnimator.FadeInCoroutine());
             yield return null;
@@ -27,7 +54,28 @@ namespace Cameo.PandoBox
 
         public void OnChangePointClicked()
         {
-            SceneNavigator.Instance.LoadScene("QRCodeScanner");
+            Dictionary<string, object> paramMapping = new Dictionary<string, object>();
+            paramMapping.Add("selectedInfo", selectedInfo);
+            SceneNavigator.Instance.LoadScene("QRCodeScanner", paramMapping);
+        }
+
+        private void onButtonClicked(PandoBoxInfo pandoBoxInfo, bool isSelected)
+        {
+            if(isSelected && !selectedInfo.Contains(pandoBoxInfo))
+            {
+                selectedInfo.Add(pandoBoxInfo);
+            }
+
+            if(!isSelected && selectedInfo.Contains(pandoBoxInfo))
+            {
+                selectedInfo.Remove(pandoBoxInfo);
+            }
+            setExchangeButton(moveTime);
+        }
+
+        private void setExchangeButton(float time = 0)
+        {
+            LeanTween.moveY(exchangeButtonRectTrans.gameObject, (selectedInfo.Count > 0) ? 0 : -exchangeButtonRectTrans.sizeDelta.y, moveTime);
         }
     }
 

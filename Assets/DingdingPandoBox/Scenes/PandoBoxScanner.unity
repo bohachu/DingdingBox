@@ -449,9 +449,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   trackerInfos:
   - Id: 1001
-    Prefab: {fileID: 1074317045563770, guid: bd7c25e6315994d0589d26880764dd82, type: 2}
+    Prefab: {fileID: 1945752339985516, guid: 33440301f9c31450397ed793e93e86b2, type: 2}
   - Id: 1002
-    Prefab: {fileID: 1074317045563770, guid: bd7c25e6315994d0589d26880764dd82, type: 2}
+    Prefab: {fileID: 1626530784872082, guid: 56e05952ddbfc42a89fe50c4e9a4bb02, type: 2}
+  - Id: 1003
+    Prefab: {fileID: 1492609274076332, guid: 2f9859c6a72a94e088260fce27d8c9a9, type: 2}
+  - Id: 1004
+    Prefab: {fileID: 1728806762432750, guid: b57766c975d554844909482f7948a19a, type: 2}
+  - Id: 1005
+    Prefab: {fileID: 1799559301495736, guid: 35e419f3de05f4389a0980823c423842, type: 2}
+  - Id: 1006
+    Prefab: {fileID: 1543676364560488, guid: 279445de257a74f6d866145895a4ff6b, type: 2}
+  - Id: 1007
+    Prefab: {fileID: 1493185242416286, guid: d33a6c73a76a14cc5b5b5206185ecf71, type: 2}
+  - Id: 1008
+    Prefab: {fileID: 1418363705077918, guid: 18b4cd9296ef84646913c6178fca4910, type: 2}
 --- !u!4 &1531264885
 Transform:
   m_ObjectHideFlags: 0
@@ -584,10 +596,10 @@ MonoBehaviour:
   m_Script: {fileID: 1980459831, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 960, y: 640}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3

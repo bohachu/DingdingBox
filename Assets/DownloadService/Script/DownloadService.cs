@@ -125,7 +125,7 @@ namespace Cameo.DownloadService
 
                 if(!string.IsNullOrEmpty(result.ErrorMsg))
                 {
-                    Debug.LogErrorFormat("[DownloadService.excuteDownloadCommandProcess] Download error: {0}", result.ErrorMsg);
+                    Debug.LogErrorFormat("[DownloadService.excuteDownloadCommandProcess] Download {1} error: {0}", waitingCommandList[0].DownloadUrl, result.ErrorMsg);
                     DebugLogger.Instance.LogError("[DownloadService.excuteDownloadCommandProcess] Download error: " + result.ErrorMsg);
                 }
                 else
