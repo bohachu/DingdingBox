@@ -42,12 +42,12 @@ public class WebGlPlayback : MonoBehaviour
     public void PlayYoutubeVideo(string _videoId)
     {
 #if UNITY_WEBGL
-        if (this.GetComponent<VideoController>() != null)
-        {
-                this.GetComponent<VideoController>().ShowLoading("Loading...");
-        }
-        videoId = _videoId;
-        StartCoroutine(WebGlRequest(videoId));
+        //if (this.GetComponent<VideoController>() != null)
+        //{
+        //        this.GetComponent<VideoController>().ShowLoading("Loading...");
+        //}
+        //videoId = _videoId;
+        //StartCoroutine(WebGlRequest(videoId));
 #else
         Debug.LogError("Please use this script only for webgl");
 #endif
@@ -74,8 +74,6 @@ public class WebGlPlayback : MonoBehaviour
             }else if(videos[counter]["format_id"] == "134")
             {
                 webGlResults.standardQuality = videos[counter]["url"];  //360p
-            }else if(videos[counter]["format_id"] == "135"){
-                webGlResults.mediumQuality = videos[counter]["url"];  //480p
             }else if (videos[counter]["format_id"] == "136")
             {
                 webGlResults.hdQuality = videos[counter]["url"];  //720p
@@ -101,15 +99,12 @@ public class WebGlPlayback : MonoBehaviour
     {
         byte[] bytesToEncode = Encoding.UTF8.GetBytes(url);
         string encodedText = Convert.ToBase64String(bytesToEncode);
-        Debug.Log(url);
         videoUrl = videoURI+""+ encodedText;
-
         Debug.Log("Play!! " + videoUrl);
         unityVideoPlayer.source = VideoSource.Url;
         unityVideoPlayer.url = videoUrl;
-
+        Debug.Log("Play or not?!"+ videoUrl);
         unityVideoPlayer.Prepare();
-       
         videoPrepared = false;
         unityVideoPlayer.prepareCompleted += VideoPrepared;
        
@@ -174,6 +169,7 @@ public class WebGlPlayback : MonoBehaviour
         OnVideoFinished();
     }
 
+
     IEnumerator WaitAndPlay()
     {
 
@@ -193,10 +189,10 @@ public class WebGlPlayback : MonoBehaviour
                 yield return new WaitForSeconds(0);
         }
         unityVideoPlayer.Play();
-        if (this.GetComponent<VideoController>() != null)
-        {
-            this.GetComponent<VideoController>().HideLoading();
-        }
+        //if (this.GetComponent<VideoController>() != null)
+        //{
+        //    this.GetComponent<VideoController>().HideLoading();
+        //}
     }
 
     IEnumerator StartVideo()
@@ -268,18 +264,18 @@ public class WebGlPlayback : MonoBehaviour
 
     private void Sync()
     {
-        VideoController controller = GameObject.FindObjectOfType<VideoController>();
-        if (controller != null)
-        {
-            //isSyncing = true;
-            //audioVplayer.time = unityVideoPlayer.time;
-            //audioVplayer.frame = unityVideoPlayer.frame;
-            //controller.Seek();
-        }
-        else
-        {
-            Debug.LogWarning("Please add a video controller to your scene to make the sync work! Will be improved in the future.");
-        }
+        //VideoController controller = GameObject.FindObjectOfType<VideoController>();
+        //if (controller != null)
+        //{
+        //    //isSyncing = true;
+        //    //audioVplayer.time = unityVideoPlayer.time;
+        //    //audioVplayer.frame = unityVideoPlayer.frame;
+        //    //controller.Seek();
+        //}
+        //else
+        //{
+        //    Debug.LogWarning("Please add a video controller to your scene to make the sync work! Will be improved in the future.");
+        //}
     }
 
     public int GetMaxQualitySupportedByDevice()

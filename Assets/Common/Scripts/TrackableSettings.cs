@@ -45,7 +45,7 @@ public class TrackableSettings : MonoBehaviour
 
                     if (enableExtendedTracking)
                     {
-                        success = target.StartExtendedTracking();
+                        //success = target.StartExtendedTracking();
 
                         if (success)
                             Debug.Log("Successfully started Extended Tracking on Target: " + tb.TrackableName);
@@ -54,7 +54,7 @@ public class TrackableSettings : MonoBehaviour
                     }
                     else
                     {
-                        target.StopExtendedTracking();
+                       //target.StopExtendedTracking();
                     }
                 }
             }

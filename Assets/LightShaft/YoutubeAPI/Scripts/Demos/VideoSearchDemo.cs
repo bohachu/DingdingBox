@@ -22,10 +22,31 @@ public class VideoSearchDemo : MonoBehaviour {
             youtubeapi = gameObject.AddComponent<YoutubeAPIManager>();
         }
 	}
-	
+
+    public string customFilter;
+
+    private void CustomFilterCheck()
+    {
+        //customFilter = "";
+        if (customFilter == "" || customFilter == null)
+        {
+            customFilter = "";
+        }
+        else
+        {
+            customFilter = "&" + customFilter;
+            Debug.Log(customFilter);
+        }
+    }
+    public string regionCode;
+    public void GetTrendingVideos()
+    {
+        youtubeapi.TrendingVideos(regionCode, 10, OnSearchDone);
+    }
+
 	public void Search()
     {
-
+        CustomFilterCheck();
         YoutubeAPIManager.YoutubeSearchOrderFilter mainFilter = YoutubeAPIManager.YoutubeSearchOrderFilter.none;
         switch (mainFilters.value)
         {
@@ -56,11 +77,12 @@ public class VideoSearchDemo : MonoBehaviour {
         if (categoryFilter.isOn)
             youtubeapi.SearchByCategory(searchField.text,categoryField.text, 10, mainFilter, YoutubeAPIManager.YoutubeSafeSearchFilter.none, OnSearchDone);
         else
-            youtubeapi.Search(searchField.text, 10, mainFilter, YoutubeAPIManager.YoutubeSafeSearchFilter.none, OnSearchDone);
+            youtubeapi.Search(searchField.text, 10, mainFilter, YoutubeAPIManager.YoutubeSafeSearchFilter.none, customFilter, OnSearchDone);
     }
 
     public void SearchByLocation(string location)
     {
+        CustomFilterCheck();
         YoutubeAPIManager.YoutubeSearchOrderFilter mainFilter = YoutubeAPIManager.YoutubeSearchOrderFilter.none;
         switch (mainFilters.value)
         {
@@ -91,7 +113,7 @@ public class VideoSearchDemo : MonoBehaviour {
         float latitude = float.Parse(splited[0]);
         float longitude = float.Parse(splited[1]);
         int locationRadius = 10;
-        youtubeapi.SearchByLocation(searchField.text, 10, locationRadius, latitude, longitude, mainFilter, YoutubeAPIManager.YoutubeSafeSearchFilter.none, OnSearchDone);
+        youtubeapi.SearchByLocation(searchField.text, 10, locationRadius, latitude, longitude, mainFilter, YoutubeAPIManager.YoutubeSafeSearchFilter.none, customFilter, OnSearchDone);
     }
 
     void OnSearchDone(YoutubeData[] results)
@@ -104,6 +126,7 @@ public class VideoSearchDemo : MonoBehaviour {
     {
         for (int x = 0; x < videoList.Length; x++)
         {
+            Debug.Log(x);
             videoListUI[x].GetComponent<YoutubeVideoUi>().videoName.text = videoList[x].snippet.title;
             videoListUI[x].GetComponent<YoutubeVideoUi>().videoId = videoList[x].id;
             videoListUI[x].GetComponent<YoutubeVideoUi>().thumbUrl = videoList[x].snippet.thumbnails.defaultThumbnail.url;

@@ -10,4 +10,5 @@ public class YoutubeContentDetails {
     public string caption;
     public string licensedContent;
     public string projection;
+    public bool ageRestrict;
 }

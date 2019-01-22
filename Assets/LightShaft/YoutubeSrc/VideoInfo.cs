@@ -109,7 +109,7 @@ namespace YoutubeLight
 
         public AudioType AudioType { get; private set; }
 
-       
+
         /// <value>
         /// <c>true</c> if the audio of this video can be extracted by YoutubeLight; otherwise, <c>false</c>.
         /// </value>
@@ -130,7 +130,7 @@ namespace YoutubeLight
         public int Resolution { get; private set; }
 
         public string Title { get; internal set; }
-       
+
         /// <value>The video extension, or <c>null</c> if the video extension is unknown.</value>
         public string VideoExtension
         {
@@ -158,6 +158,8 @@ namespace YoutubeLight
         public VideoType VideoType { get; private set; }
 
         internal string HtmlPlayerVersion { get; set; }
+
+        internal string HtmlscriptName { get; set; }
 
         public override string ToString()
         {
