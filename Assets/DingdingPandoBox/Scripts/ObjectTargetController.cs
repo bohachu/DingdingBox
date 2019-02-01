@@ -6,16 +6,15 @@ namespace Cameo.PandoBox
 {
     public class ObjectTargetController : MonoBehaviour
     {
-        [SerializeField]
-        private VideoController videoController;
+        public Transform Root;
 
-        [SerializeField]
-        private GameObject objectPlayer;
+        public GameObject PresentPrefab;
 
-        [SerializeField]
-        private GameObject objectPresent;
+        public GameObject VideoPrefab;
 
         private PandoBoxInfo pandoBoxInfo;
+
+        private IDisplayObject displayObject;
 
         private bool isTriggered
         {
@@ -32,28 +31,51 @@ namespace Cameo.PandoBox
 
         public void Show()
         {
-            objectPlayer.SetActive(!isTriggered);
-            objectPresent.SetActive(isTriggered);
-
-            if(!isTriggered)
+            if (displayObject != null)
             {
-                videoController.VideoFinishedCallback += onVideoPlayedCompleted;
-                videoController.Play(pandoBoxInfo.urlLink);
+                Close();
+            }
+
+            if (!isTriggered)
+            {
+                showVideo();
+            }
+            else
+            {
+                showPresent();
             }
         }
 
-        public void Hide()
+        public void Close()
         {
-            objectPlayer.SetActive(false);
-            objectPresent.SetActive(false);
-            videoController.Stop();
+            if (displayObject != null)
+            {
+                Destroy(displayObject.gameObject);
+                displayObject = null;
+            }
+        }
+
+        private IDisplayObject showPresent()
+        {
+            GameObject newObj = Instantiate(PresentPrefab, Root, false);
+            displayObject = newObj.GetComponent<IDisplayObject>();
+            displayObject.Show();
+            return displayObject;
+        }
+
+        private IDisplayObject showVideo()
+        {
+            GameObject newObj = Instantiate(VideoPrefab, Root, false);
+            displayObject = newObj.GetComponent<IDisplayObject>();
+            Debug.LogFormat("{0}", pandoBoxInfo.videoUrl);
+            displayObject.Show(pandoBoxInfo.urlLink, gameObject, "onVideoPlayedCompleted");
+            return displayObject;
         }
 
         private void onVideoPlayedCompleted()
         {
             RecordCenter.Instance.AddScan(pandoBoxInfo.urlLink);
-            objectPlayer.SetActive(false);
-            objectPresent.SetActive(true);
+            Show();
         }
     }
 }

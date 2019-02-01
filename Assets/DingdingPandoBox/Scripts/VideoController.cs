@@ -33,6 +33,7 @@ namespace Cameo.PandoBox
 
         public void Play(string youtubeID)
         {
+            Debug.Log(youtubeID);
             youtubePlayer.videoUrl = youtubeID;
             unityVideoPlayer.loopPointReached += UnityVideoPlayer_LoopPointReached;
             youtubePlayer.enabled = true;

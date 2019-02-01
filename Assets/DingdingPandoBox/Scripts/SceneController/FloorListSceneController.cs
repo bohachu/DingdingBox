@@ -92,5 +92,4 @@ namespace Cameo.PandoBox
             exchangeButtonRectTrans.gameObject.SetActive(scanCompletedCount >= enableExchageCount);
         }
     }
-
 }
